@@ -43,14 +43,36 @@ const pizzaData = [
   },
 ];
 
-function App() {
+const App = () => {
   return (
     <>
-      <h1>Hello Hendri</h1>
+      <Header />
+      <Menu />
+      <Footer />
+    </>
+  );
+};
+
+const Header = () => {
+  return <h1>Fast React Pizz Co.</h1>;
+};
+
+const Menu = () => {
+  return (
+    <>
+      <h2>Our Menus</h2>
+      <Pizza />
+      <Pizza />
       <Pizza />
     </>
   );
-}
+};
+
+const Footer = () => {
+  return (
+    <footer>{new Date().toLocaleTimeString()} We're currently open!</footer>
+  );
+};
 
 const Pizza = () => {
   return (
