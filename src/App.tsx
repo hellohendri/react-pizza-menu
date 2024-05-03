@@ -1,6 +1,14 @@
 import "./index.css";
 
-const pizzaData = [
+interface Pizza {
+  name: string;
+  ingredients: string;
+  price: number;
+  photoName: string;
+  soldOut: boolean;
+}
+
+const pizzaData: Pizza[] = [
   {
     name: "Focaccia",
     ingredients: "Bread with italian olive oil and rosemary",
@@ -67,10 +75,36 @@ const Menu = () => {
   return (
     <main className="menu">
       <h2>Our Menus</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      {pizzaData.map((pizza, index) => (
+        <Pizza
+          key={index}
+          name={pizza.name}
+          ingredients={pizza.ingredients}
+          photoName={pizza.photoName}
+          price={pizza.price}
+          soldOut={pizza.soldOut}
+        />
+      ))}
     </main>
+  );
+};
+
+const Pizza = (props: Pizza) => {
+  const { name, ingredients, photoName, price, soldOut } = props;
+
+  return (
+    !soldOut && (
+      <>
+      <div className="pizza">
+      <img src={photoName} alt={name} />
+        <div>
+          <h3>{name}</h3>
+          <p>{ingredients}</p>
+          <span>$ {price}</span>
+        </div>
+      </div>
+      </>
+    )
   );
 };
 
@@ -84,16 +118,6 @@ const Footer = () => {
     <footer className="footer">
       {isOpen ? `We're currently open` : `Sorry we're currently close`}!
     </footer>
-  );
-};
-
-const Pizza = () => {
-  return (
-    <>
-      <img src="pizzas/spinaci.jpg" alt="Spinaci Pizza" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </>
   );
 };
 
