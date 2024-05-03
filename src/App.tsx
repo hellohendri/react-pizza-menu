@@ -1,3 +1,5 @@
+import "./index.css";
+
 const pizzaData = [
   {
     name: "Focaccia",
@@ -45,32 +47,43 @@ const pizzaData = [
 
 const App = () => {
   return (
-    <>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
-    </>
+    </div>
   );
 };
 
 const Header = () => {
-  return <h1>Fast React Pizz Co.</h1>;
+  return (
+    <header className="header">
+      <h1>Fast React Pizz Co.</h1>
+    </header>
+  );
 };
 
 const Menu = () => {
   return (
-    <>
+    <main className="menu">
       <h2>Our Menus</h2>
       <Pizza />
       <Pizza />
       <Pizza />
-    </>
+    </main>
   );
 };
 
 const Footer = () => {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+
   return (
-    <footer>{new Date().toLocaleTimeString()} We're currently open!</footer>
+    <footer className="footer">
+      {isOpen ? `We're currently open` : `Sorry we're currently close`}!
+    </footer>
   );
 };
 
@@ -78,7 +91,7 @@ const Pizza = () => {
   return (
     <>
       <img src="pizzas/spinaci.jpg" alt="Spinaci Pizza" />
-      <h2>Pizza Spinaci</h2>
+      <h3>Pizza Spinaci</h3>
       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
     </>
   );
